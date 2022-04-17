@@ -130,6 +130,9 @@ class WoZaiXiaoYuanPuncher:
         self.header['Host'] = "student.wozaixiaoyuan.com"
         self.header['Content-Type'] = "application/x-www-form-urlencoded"
         self.header['JWSESSION'] = self.getJwsession()
+        sign_time = int(round(time.time() * 1000))
+        content = f"{os.environ['WZXY_PROVINCE']}_{sign_time}_{os.environ['WZXY_CITY']}"
+        signature = hashlib.sha256(content.encode('utf-8')).hexdigest()
         sign_data = {
             "answers": '["0"]',
             "seq": str(seq),
@@ -144,7 +147,11 @@ class WoZaiXiaoYuanPuncher:
             "street": os.environ['WZXY_STREET'],
             "myArea": "",
             "areacode": "",
-            "userId": ""
+            "userId": "",
+            "towncode": os.environ['WZXY_TOWNCODE'],
+            "citycode": os.environ['WZXY_CITYCODE'],
+            "timestampHeader": sign_time,
+            "signatureHeader": signature
         }
         data = urlencode(sign_data)
         self.session = requests.session()    
