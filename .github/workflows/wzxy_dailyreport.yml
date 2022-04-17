@@ -48,8 +48,10 @@ jobs:
         WZXY_PROVINCE: ${{secrets.PROVINCE}}
         WZXY_TOWNSHIP: ${{secrets.TOWNSHIP}}
         WZXY_STREET: ${{secrets.STREET}}
+        WZXY_TOWNCODE:${{secrets.TOWNCODE}}
+        WZXY_CITYCODE:${{secrets.CITYCODE}}
       run: python wzxy-dailyreport.py
-  
+
   ## 多账户配置示例，请复制下面的代码后取消注释再修改，粘贴时注意缩进
   # USER_02:    ## Jobs名，注意修改序号
   #   runs-on: ubuntu-latest
@@ -86,5 +88,5 @@ jobs:
   #       WZXY_DISTRICT: ${{secrets.DISTRICT}}
   #       WZXY_PROVINCE: ${{secrets.PROVINCE}}
   #       WZXY_TOWNSHIP: ${{secrets.TOWNSHIP}}
-  #       WZXY_STREET: ${{secrets.STREET}}    
-  #     run: python wzxy-dailyreport.py      
+  #       WZXY_STREET: ${{secrets.STREET}}
+  #     run: python wzxy-dailyreport.py
